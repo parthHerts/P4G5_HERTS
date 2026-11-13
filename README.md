@@ -313,7 +313,7 @@ Track team progress across all project deliverables below.
 
 ### Task 1: Environment & Repository Setup
 - ✅ Create private GitHub repository (`SC26ACM/Data-Engineering-Team-Project`).
-- ❌ Add all 4 team members with full contributor access.
+- ✅ Add all 4 team members with full contributor access.
 - ✅ Define repository structure (`data/`, `notebooks/`, `outputs/`).
 - ✅ Establish branch rules (`main` protection, feature branch conventions).
 - ✅ Complete comprehensive `README.md` with role matrices, schema, and installation commands.
