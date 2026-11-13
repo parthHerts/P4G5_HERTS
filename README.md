@@ -204,8 +204,8 @@ Follow these step-by-step instructions to set up your local development environm
 ## 1. Clone the Repository
 Open your terminal (Mac/Linux) or Git Bash (Windows) and clone this private repository to your local machine:
 ```bash
-git clone https://github.com/SC26ACM/Data-Engineering-Team-Project.git
-cd Data-Engineering-Team-Project
+git clone https://github.com/parthHerts/P4G5_HERTS.git
+cd P4G5_HERTS
 ```
 
 ## 2. Installation Script:
@@ -313,7 +313,7 @@ Track team progress across all project deliverables below.
 
 ### Task 1: Environment & Repository Setup
 - ✅ Create private GitHub repository (`SC26ACM/Data-Engineering-Team-Project`).
-- ❌ Add all 4 team members with full contributor access.
+- ✅ Add all 4 team members with full contributor access.
 - ✅ Define repository structure (`data/`, `notebooks/`, `outputs/`).
 - ✅ Establish branch rules (`main` protection, feature branch conventions).
 - ✅ Complete comprehensive `README.md` with role matrices, schema, and installation commands.
