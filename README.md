@@ -204,8 +204,8 @@ Follow these step-by-step instructions to set up your local development environm
 ## 1. Clone the Repository
 Open your terminal (Mac/Linux) or Git Bash (Windows) and clone this private repository to your local machine:
 ```bash
-git clone https://github.com/SC26ACM/Data-Engineering-Team-Project.git
-cd Data-Engineering-Team-Project
+git clone https://github.com/parthHerts/P4G5_HERTS.git
+cd P4G5_HERTS
 ```
 
 ## 2. Installation Script:
