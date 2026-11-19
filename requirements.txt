@@ -1,0 +1,26 @@
+# Installation Requirements for Project (Team P4G5)
+
+# Requires Python >= 3.11 and Java JDK 17+ (for PySpark)
+
+# Install via: pip install -r requirements.txt
+
+
+
+# Core data manipulation & Parquet I/O
+numpy==2.4.6
+pandas==3.1.1
+pyarrow==26.0.1
+
+# Distributed processing & machine learning
+pyspark==4.3.0
+scikit-learn==1.9.1
+
+# Data visualisation
+matplotlib==3.11.2
+seaborn==0.13.2
+
+# Jupyter notebook kernel support
+ipykernel==7.4.0
+
+# Optional: only required if downloading survey data from UH S3 over VPN
+boto3==1.44.6

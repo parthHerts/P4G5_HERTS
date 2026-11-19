@@ -208,21 +208,20 @@ git clone https://github.com/parthHerts/P4G5_HERTS.git
 cd P4G5_HERTS
 ```
 
-## 2. Installation Script:
+## 2. Creating Virtual Enviornment for Notebooks:
 
 ```bash
 # Create virtual environment
 python -m venv venv
 
 # Activate virtual environment
-# On macOS/Linux:
-source venv/bin/activate
 # On Windows:
 venv\Scripts\activate
 
 # Install required packages
-pip install --upgrade pip
-pip install pandas numpy pyarrow fastparquet pyspark scikit-learn matplotlib seaborn jupyterlab
+python.exe -m pip install --upgrade pip
+pip install -r requirements.txt  
+python -m ipykernel install --user --name=p4g5-venv --display-name "Python (P4G5)"  # Select the P4G5 kernerl when opening notebook                
 ```
 
 ---
@@ -246,16 +245,16 @@ Create a branch named after your task or role:
 
 ```bash
 # Suraj (Git Lead)
-git checkout -b feature/repo-setup
+git checkout -b dev_suraj
 
 # Parth (Data Engineer)
-git checkout -b feature/etl-pipeline
+git checkout -b dev_parth
 
 # Dhruv (Data Scientist)
-git checkout -b feature/pyspark-ml
+git checkout -b dev_dhruv
 
 # Hussnain (Data Analyst)
-git checkout -b feature/model-evaluation
+git checkout -b data-analyst-work
 ```
 
 ### 3. Commit Work Incrementally
@@ -265,7 +264,7 @@ Stage files and write clear, descriptive commit messages matching conventional c
 ```bash
 git status
 git add notebooks/etl_pipeline.ipynb data/processed/
-git commit -m "feat(etl): add missing value for sale expected date and delivered date"
+git commit -m "feat(etl): add etl_pipeline and outputs"
 ```
 
 ### 4. Push Branch to GitHub
@@ -276,7 +275,7 @@ git push origin feature/etl-pipeline
 
 ### 5. Open Pull Request & Peer Review
 
-1. Go to `https://github.com/SC26ACM/Data-Engineering-Team-Project`.
+1. Go to `https://github.com/parthHerts/P4G5_HERTS.git`.
 2. Click **Compare & pull request**.
 3. Set Title: `[ETL] Ingestion, Data Cleaning and Parquet Export`.
 4. Assign at least one peer reviewer (e.g., Dhruv or Hussnain).
@@ -285,7 +284,7 @@ git push origin feature/etl-pipeline
    ```bash
    git checkout main
    git pull origin main
-   git branch -d feature/etl-pipeline
+   git branch -d dev_suraj
    ```
 ---
 
@@ -296,10 +295,11 @@ git push origin feature/etl-pipeline
 │   ├── raw/                    # Raw subscription CSV & db files (Never modify manually)
 │   └── processed/              # Output directory for final Parquet files
 ├── notebooks/
-│   ├── etl_pipeline.ipynb    # Task 2: Python / Pandas ETL Pipeline
-│   └── pyspark_ml.ipynb      # Task 3: Distributed PySpark Machine Learning
+│   ├── etl_pipeline.ipynb      # Task 2: Python / Pandas ETL Pipeline
+│   └── pyspark_ml.ipynb        # Task 3: Distributed PySpark Machine Learning
 ├── outputs/                    # Saved confusion matrices and evaluation charts
 ├── .gitignore                  # Prevents caching files/virtual environments from being tracked
+├── requirements.txt            # Contains all the list of installation packages
 └── README.md                   # Setup and execution documentation
 ```
 
@@ -319,31 +319,31 @@ Track team progress across all project deliverables below.
 - ✅ Complete comprehensive `README.md` with role matrices, schema, and installation commands.
 
 ### Task 2: Extract, Transform, Load (ETL Pipeline)
-- ❌ Initialize modular Jupyter notebook (`notebooks/etl_pipeline.ipynb`).
-- ❌ **Extract (`extract()`):** Connect to `PerfectPetClub.db` SQLite database and ingest raw CSVs (`CRM_report`, `server_log`, `survey`).
-- ❌ **Transform (`transform()`):**
-  - ❌ Execute data quality checks and resolve schema mismatches.
-  - ❌ Impute missing values (missing review ratings, unfulfilled delivery dates).
-  - ❌ Standardize date strings into datetime objects.
-  - ❌ Derive binary target variable `churn` (`1` if `auto_renew == 0` or subscription expired; `0` otherwise).
-  - ❌ Engineer predictive features (`total_lifetime_spend`, `order_frequency`, `avg_star_rating`, `delivery_delay_rate`, `days_since_last_order`).
-- ❌ **Load (`load()`):** Write final cleaned DataFrame into columnar Parquet format (`data/processed/processed_churn.parquet`).
-- ❌ Validate Parquet output integrity and schema.
+- ✅ Initialize modular Jupyter notebook (`notebooks/etl_pipeline.ipynb`).
+- ✅ **Extract (`extract()`):** Connect to `PerfectPetClub.db` SQLite database and ingest raw CSVs (`CRM_report`, `server_log`, `survey`).
+- ✅ **Transform (`transform()`):**
+  - ✅ Execute data quality checks and resolve schema mismatches.
+  - ✅ Impute missing values (missing review ratings, unfulfilled delivery dates).
+  - ✅ Standardize date strings into datetime objects.
+  - ✅ Derive binary target variable `churn` (`1` if `auto_renew == 0` or subscription expired; `0` otherwise).
+  - ✅ Engineer predictive features (`total_lifetime_spend`, `order_frequency`, `avg_star_rating`, `delivery_delay_rate`, `days_since_last_order`).
+- ✅ **Load (`load()`):** Write final cleaned DataFrame into columnar Parquet format (`data/processed/processed_churn.parquet`).
+- ✅ Validate Parquet output integrity and schema.
 
 ### Task 3: Machine Learning Pipeline (PySpark)
-- ❌ Initialize PySpark `SparkSession` in `notebooks/pyspark_ml.ipynb`.
-- ❌ Ingest `data/processed/processed_churn.parquet` into PySpark DataFrame.
-- ❌ **Data Preprocessing:**
-  - ❌ Encode categorical variables using `StringIndexer` and `OneHotEncoder`.
-  - ❌ Assemble feature vectors using `VectorAssembler`.
-  - ❌ Scale features using `StandardScaler` (where applicable).
-- ❌ Split dataset into Training (80%) and Test (20%) sets.
-- ❌ **Model Building & Experimentation:**
-  - ❌ Train Logistic Regression classifier.
-  - ❌ Train Random Forest classifier.
-  - ❌ Train Gradient-Boosted Trees (GBT) classifier.
-- ❌ **Hyperparameter Tuning:** Tune models using `ParamGridBuilder` and `CrossValidator`.
-- ❌ Select best performing model based on evaluation metrics.
+- ✅ Initialize PySpark `SparkSession` in `notebooks/pyspark_ml.ipynb`.
+- ✅ Ingest `data/processed/processed_churn.parquet` into PySpark DataFrame.
+- ✅ **Data Preprocessing:**
+  - ✅ Encode categorical variables using `StringIndexer` and `OneHotEncoder`.
+  - ✅ Assemble feature vectors using `VectorAssembler`.
+  - ✅ Scale features using `StandardScaler` (where applicable).
+- ✅ Split dataset into Training (80%) and Test (20%) sets.
+- ✅ **Model Building & Experimentation:**
+  - ✅ Train Logistic Regression classifier.
+  - ✅ Train Random Forest classifier.
+  - ✅ Train Gradient-Boosted Trees (GBT) classifier.
+- ✅ **Hyperparameter Tuning:** Tune models using `ParamGridBuilder` and `CrossValidator`.
+- ✅ Select best performing model based on evaluation metrics.
 
 ### Task 4: Evaluation, Export & Submission
 - ❌ **Model Evaluation Plots:**
