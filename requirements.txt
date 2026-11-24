@@ -1,7 +1,6 @@
 boto3
 pandas
 numpy
-sqlite3
 pyspark
 matplotlib
 seaborn
