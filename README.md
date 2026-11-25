@@ -21,96 +21,27 @@ Task 5 - Practice your Presentation
 
 ---
 
-# 👥 Team Roles & Responsibilities 
+## 👥 Team & Governance
 
-| Name & Student ID | Assigned Role | Primary Focus Tasks | Key Deliverables | 
-| ----- | ----- | ----- | ----- | 
-| **Suraj Chavan** (26001944) | **Project Manager & Git** | Task 1 & Task 5 | Git repository architecture, branch protection rules, commit tracking, presentation coordination. | 
-| **Parth Parkhiya** (25107711) | **Data Engineer (Team Leader)** | Task 2, Task 3 & Task 4 | ETL pipeline notebook, missing value imputation, Parquet data export, HTML submission. | 
-| **Dhruv Patel** (25117102) | **Data Scientist** | Task 3 | PySpark pipeline, string indexing/vectorization, model training (LR, RF, GBT), hyperparameter tuning. | 
-| **Hussnain Umer** (25110803) | **Data Analyst** | Task 2 & Task 3 (Evaluation) | Feature correlation analysis, confusion matrices, ROC curves, evaluation plots, report documentation. |
+> **Branching Policy:** Direct commits to `main` are restricted. All features are developed on individual branches (`dev_suraj`, `dev_parth`, `dev_dhruv`, `dev_hussnain`) and merged via peer-reviewed Pull Requests.
 
-# 📋 Detailed Description of Each Role
+| Team Member | Student ID | Assigned Role | Core Responsibilities |
+| :--- | :--- | :--- | :--- |
+| **Suraj Chavan** | `26001944` | **Project Manager & Git Lead** | Repository architecture, branch protection, PR reviews, live demo coordination |
+| **Parth Parkhiya** | `25107711` | **Data Engineer (Team Lead)** | Modular ETL (`extract`/`transform`/`load`), S3 ingestion, Parquet export, HTML submission |
+| **Dhruv Patel** | `25117102` | **Data Scientist** | PySpark ML pipeline, feature vectorization, model training & hyperparameter tuning |
+| **Hussnain Umer** | `25110803` | **Data Analyst** | Feature definitions, evaluation metrics, ROC/confusion plots, PR code reviews |
 
-### 1. Project Manager & Git — Suraj Chavan (26001944)
+<details>
+<summary><strong>📌 View Sprint & Deliverable Checklist</strong></summary>
 
-* **The Blueprint:** Serves as the system architect and workflow controller. Sets up project infrastructure, defines Git branch protection rules, enforces peer-review requirements, monitors progress against milestones, and ensures the live presentation runs smoothly.
+- ✅ **Task 1 — Environment & Git Setup:** Configure repository structure, branch rules, and PR review workflow.
+- ✅ **Task 2 — ETL Pipeline:** Implement `extract()`, `transform()`, and `load()` functions and export `processed_churn.parquet`.
+- ✅ **Task 3 — Distributed ML:** Build PySpark preprocessing pipeline and train tuned LR, RF, and GBT classifiers.
+- ✅ **Task 4 — Evaluation & Submission:** Export confusion matrices, ROC/PR plots (`outputs/figures/`), and HTML notebooks (`outputs/html/`).
+- ❌ **Task 5 — Live Code Defense:** Rehearse slide-free code walkthrough and audit Git commit history across all contributors.
 
-* **Detailed Responsibilities:**
-
-  * **Repository Setup (Task 1):** Create the private GitHub repository, invite team members, and set up directory structures (`data/`, `notebooks/`, `outputs/`).
-
-  * **Version Control Enforcement:** Maintain branch naming conventions (`feature/etl-pipeline`, `feature/pyspark-ml`, `feature/model-evaluation`), require at least 1 peer review for all Pull Requests (PRs), and prevent direct commits to `main`.
-
-  * **Continuous Integration & Quality Audit:** Check commit history to ensure every team member has sustained and continuous contributions.
-
-  * **Presentation Facilitator (Task 5):** Direct the live presentation structure, coordinate screen-sharing transitions, manage overall timing, and lead the live Git commit history demonstration.
-
-### 2. Data Engineer (Team Leader) — Parth Parkhiya (25107711)
-
-* **The Blueprint:** The data architect responsible for data ingestion, quality validation, feature engineering, storage optimization, and final deliverable compilation.
-
-* **Detailed Responsibilities:**
-
-  * **ETL Pipeline Development (Task 2):** Write clean, modular Python functions inside `notebooks/etl_pipeline.ipynb`:
-
-    * `extract()`: Query SQLite database (`PerfectPetClub.db`) and load auxiliary CSV files (`CRM_report`, `server_log`, `survey`).
-
-    * `transform()`: Clean raw data, handle null/missing values, resolve date inconsistencies, execute schema validation, and engineer aggregated customer metrics.
-
-    * `load()`: Export processed data to compressed columnar Parquet format (`data/processed/processed_churn.parquet`).
-
-  * **Data Quality Control:** Handle missing dates, unreviewed product ratings, optional text fields, and convert raw business rules into the binary target variable `churn`.
-
-  * **Submission Lead (Task 4):** Verify all code cells execute cleanly top-to-bottom, convert `.ipynb` notebooks into HTML format, and perform final task submission on behalf of the team.
-
-### 3. Data Scientist — Dhruv Patel (25117102)
-
-* **The Blueprint:** The machine learning engineer responsible for building the distributed predictive pipeline in PySpark, selecting algorithms, tuning hyperparameters, and optimizing churn classification accuracy.
-
-* **Detailed Responsibilities:**
-
-  * **PySpark Environment Setup (Task 3):** Initialize local `SparkSession` and load `data/processed/processed_churn.parquet` into a PySpark DataFrame.
-
-  * **Feature Preprocessing Pipeline:**
-
-    * Use `StringIndexer` and `OneHotEncoder` to encode categorical columns (e.g., county, subscription tier, payment gateway).
-
-    * Use `VectorAssembler` to assemble all numeric and encoded categorical features into a unified `features` vector.
-
-    * Apply scaling using `StandardScaler` where necessary.
-
-  * **Model Building & Experimentation:**
-
-    * Split data into Training (80%) and Test (20%) sets.
-
-    * Build and compare multiple classifiers: **Logistic Regression**, **Random Forest Classifier**, and **Gradient-Boosted Trees (GBTClassifier)**.
-
-  * **Hyperparameter Tuning:** Implement `ParamGridBuilder` and `CrossValidator` (e.g., tuning `maxDepth`, `numTrees`, `regParam`) to prevent overfitting and optimize prediction accuracy.
-
-### 4. Data Analyst — Hussnain Umer (25110803)
-
-* **The Blueprint:** The domain analyst and visual storyteller responsible for defining feature requirements, auditing model predictions, generating evaluation figures, and translating ML outputs into business insights.
-
-* **Detailed Responsibilities:**
-
-  * **Feature Engineering Collaboration (Task 2):** Identify key churn indicators (e.g., login frequency drops, negative survey sentiment, late delivery history, order recency) to guide the Data Engineer's transformation logic.
-
-  * **Model Performance Evaluation (Task 3):**
-
-    * Calculate model evaluation metrics: **Accuracy, Precision, Recall, F1-Score, ROC-AUC, and PR-AUC**.
-
-    * Analyze class imbalance issues and evaluate business trade-offs (e.g., cost of false positives vs. false negatives in subscriber retention).
-
-  * **Visual Output Generation:** Produce high-resolution charts in `outputs/figures/`:
-
-    * **Confusion Matrices** (annotated heatmap showing True Positives, False Positives, True Negatives, False Negatives).
-
-    * **ROC Curves & Precision-Recall Curves**.
-
-    * **Feature Importance Plots** (ranking top drivers of customer churn).
-
-  * **Peer Review & Presentation Insights:** Review ETL and ML code before PR merges and articulate model trade-offs during the live presentation.
+</details>
 
 ---
 
@@ -291,81 +222,20 @@ git push origin feature/etl-pipeline
 ## 📂 Project Structure
 
 ```text
+P4G5_HERTS/
 ├── data/
-│   ├── raw/                    # Raw subscription CSV & db files (Never modify manually)
-│   └── processed/              # Output directory for final Parquet files
+│   ├── raw/                        # Immutable source SQLite DB and CSV logs
+│   └── processed/                  # Cleaned feature store (processed_churn.parquet)
 ├── notebooks/
-│   ├── etl_pipeline.ipynb      # Task 2: Python / Pandas ETL Pipeline
-│   └── pyspark_ml.ipynb        # Task 3: Distributed PySpark Machine Learning
-├── outputs/                    # Saved confusion matrices and evaluation charts
-├── .gitignore                  # Prevents caching files/virtual environments from being tracked
-├── requirements.txt            # Contains all the list of installation packages
-└── README.md                   # Setup and execution documentation
+│   ├── etl_pipeline.ipynb          # Task 2: Python/Pandas ETL & data quality checks
+│   └── pyspark_ml.ipynb            # Task 3: Distributed PySpark ML & CrossValidator
+├── outputs/
+│   ├── figures/                    # Confusion matrices, ROC/PR curves, feature importance
+│   └── html/                       # Standalone HTML exports of executed notebooks
+├── .env.example                    # Template for S3/MinIO environment variables
+├── .gitignore                      # Excludes venv, .env, cache, and temp artifacts
+├── requirements.txt                # Reproducible Python dependency list
+└── README.md                       # Project documentation & live walkthrough guide
 ```
 
 ---
-
-# 📌 Task Completion Checklist
-
-### Customer Churn Prediction & Analytics Pipeline
-
-Track team progress across all project deliverables below.
-
-### Task 1: Environment & Repository Setup
-- ✅ Create private GitHub repository (`SC26ACM/Data-Engineering-Team-Project`).
-- ✅ Add all 4 team members with full contributor access.
-- ✅ Define repository structure (`data/`, `notebooks/`, `outputs/`).
-- ✅ Establish branch rules (`main` protection, feature branch conventions).
-- ✅ Complete comprehensive `README.md` with role matrices, schema, and installation commands.
-
-### Task 2: Extract, Transform, Load (ETL Pipeline)
-- ✅ Initialize modular Jupyter notebook (`notebooks/etl_pipeline.ipynb`).
-- ✅ **Extract (`extract()`):** Connect to `PerfectPetClub.db` SQLite database and ingest raw CSVs (`CRM_report`, `server_log`, `survey`).
-- ✅ **Transform (`transform()`):**
-  - ✅ Execute data quality checks and resolve schema mismatches.
-  - ✅ Impute missing values (missing review ratings, unfulfilled delivery dates).
-  - ✅ Standardize date strings into datetime objects.
-  - ✅ Derive binary target variable `churn` (`1` if `auto_renew == 0` or subscription expired; `0` otherwise).
-  - ✅ Engineer predictive features (`total_lifetime_spend`, `order_frequency`, `avg_star_rating`, `delivery_delay_rate`, `days_since_last_order`).
-- ✅ **Load (`load()`):** Write final cleaned DataFrame into columnar Parquet format (`data/processed/processed_churn.parquet`).
-- ✅ Validate Parquet output integrity and schema.
-
-### Task 3: Machine Learning Pipeline (PySpark)
-- ✅ Initialize PySpark `SparkSession` in `notebooks/pyspark_ml.ipynb`.
-- ✅ Ingest `data/processed/processed_churn.parquet` into PySpark DataFrame.
-- ✅ **Data Preprocessing:**
-  - ✅ Encode categorical variables using `StringIndexer` and `OneHotEncoder`.
-  - ✅ Assemble feature vectors using `VectorAssembler`.
-  - ✅ Scale features using `StandardScaler` (where applicable).
-- ✅ Split dataset into Training (80%) and Test (20%) sets.
-- ✅ **Model Building & Experimentation:**
-  - ✅ Train Logistic Regression classifier.
-  - ✅ Train Random Forest classifier.
-  - ✅ Train Gradient-Boosted Trees (GBT) classifier.
-- ✅ **Hyperparameter Tuning:** Tune models using `ParamGridBuilder` and `CrossValidator`.
-- ✅ Select best performing model based on evaluation metrics.
-
-### Task 4: Evaluation, Export & Submission
-- ❌ **Model Evaluation Plots:**
-  - ❌ Generate and save annotated Confusion Matrices (`outputs/figures/`).
-  - ❌ Plot and save ROC and Precision-Recall Curves.
-  - ❌ Extract and plot Feature Importance rankings.
-- ❌ Verify both notebooks execute cleanly top-to-bottom without any errors.
-- ❌ Export both notebooks (`etl_pipeline.ipynb`, `pyspark_ml.ipynb`) into HTML files (`outputs/html/`).
-- ❌ Team Leader (Parth Parkhiya) submits HTML files before deadline.
-
-### Task 5: Presentation Preparation (No Slides Live Demo)
-- ❌ Rehearse live code navigation between members without slides.
-- ❌ Verify git commit log proves sustained individual contributions across all 4 members.
-- ❌ Practice explaining code design decisions, Parquet trade-offs, and PySpark pipeline choices.
-- ❌ Prepare for live code modification / parameter tuning requests from examiners.
-
----
-
-
-
-
-
-
-
-
